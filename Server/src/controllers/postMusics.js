@@ -34,7 +34,7 @@ const postMusics = async (req, res) => {
         // Manejar errores de validación de Sequelize
         console.error(error);
         res.status(500).json({ error: 'Error al crear una nueva canción' });
-        
+
     }
 };
 
