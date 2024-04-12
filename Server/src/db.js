@@ -14,28 +14,39 @@ const basename = path.basename(__filename);
 
 const modelDefiners = [];
 
-// Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
 fs.readdirSync(path.join(__dirname, '/models'))
   .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
   .forEach((file) => {
     modelDefiners.push(require(path.join(__dirname, '/models', file)));
   });
 
-// Injectamos la conexion (sequelize) a todos los modelos
 modelDefiners.forEach(model => model(sequelize));
-// Capitalizamos los nombres de los modelos ie: product => Product
 let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-// En sequelize.models están todos los modelos importados como propiedades
-// Para relacionarlos hacemos un destructuring
-const { Clients, Music } = sequelize.models;
 
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
-Music.belongsToMany(Clients, { through: 'Clients_Musics' });
-Clients.belongsToMany(Music, { through: 'Clients_Musics' });
+const { Artists, Songs, Genres, Playlists, Users, PlaylistDetails, Likes } = sequelize.models;
+
+//relación "uno a muchos" entre Artistas y Canciones
+Artists.hasMany(Songs, { foreignKey: 'ArtistID' });
+Songs.belongsTo(Artists, { foreignKey: 'ArtistID' });
+
+//relación "uno a muchos" entre Géneros y Canciones
+Genres.hasMany(Songs, { foreignKey: 'GenreID' });
+Songs.belongsTo(Genres, { foreignKey: 'GenreID' });
+
+//relación "uno a muchos" entre Usuarios y Listas de Reproducción
+Users.hasMany(Playlists, { foreignKey: 'UsersID' });
+Playlists.belongsTo(Users, { foreignKey: 'UsersID' });
+
+//relación "muchos a muchos" entre Canciones y Listas de Reproducción
+Songs.belongsToMany(Playlists, { through: PlaylistDetails, foreignKey: 'SongsID' });
+Playlists.belongsToMany(Songs, { through: PlaylistDetails, foreignKey: 'PlaylistID' });
+
+//relación "muchos a muchos" entre Usuarios y Listas de Reproducción a través de Likes
+Users.belongsToMany(Playlists, { through: Likes, foreignKey: 'UsersID' });
+Playlists.belongsToMany(Users, { through: Likes, foreignKey: 'PlaylistID' });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
