@@ -1,14 +1,14 @@
 require('dotenv').config();
 const { Op } = require('sequelize');
-const { Music } = require("../db");
+const { Songs } = require("../db");
 
-const getMusic = async (req, res) => {
+const getSongs = async (req, res) => {
     try {
         const { name } = req.query;
 
         if (name) {
 
-            const MusicName = await Music.findAll({
+            const MusicName = await Songs.findAll({
                 where: {
                     name: {
                         [Op.iLike]: `%${name}%`,
@@ -26,14 +26,14 @@ const getMusic = async (req, res) => {
             return res.status(200).json(MusicName);
 
         } else {
-            const allMusic = await Music.findAll();
-            if (allMusic.length === 0) {
+            const allSongs = await Songs.findAll();
+            if (allSongs.length === 0) {
                 const mensaje = "No hay canciones aún";
 
                 return res.status(200).json(mensaje);
             }
 
-            return res.status(200).json(allMusic);
+            return res.status(200).json(allSongs);
         }
 
 
@@ -43,4 +43,4 @@ const getMusic = async (req, res) => {
     }
 };
 
-module.exports = getMusic;
+module.exports = getSongs;
