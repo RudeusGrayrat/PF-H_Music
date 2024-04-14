@@ -1,6 +1,7 @@
 require('dotenv').config();
 const { Op } = require('sequelize');
-const { Songs } = require("../db");
+const { Songs, Artists, Genres } = require("../db");
+
 
 const getSongs = async (req, res) => {
     try {
@@ -14,6 +15,16 @@ const getSongs = async (req, res) => {
                         [Op.iLike]: `%${name}%`,
                     },
                 },
+                include: [
+                    {
+                        model: Artists,
+                        attributes: ['name'],
+                    },
+                    {
+                        model: Genres,
+                        attributes: ['name'],
+                    }
+                ]
 
             });
 
@@ -26,7 +37,18 @@ const getSongs = async (req, res) => {
             return res.status(200).json(MusicName);
 
         } else {
-            const allSongs = await Songs.findAll();
+            const allSongs = await Songs.findAll({
+                include: [
+                    {
+                        model: Artists,
+                        attributes: ['name'],
+                    },
+                    {
+                        model: Genres,
+                        attributes: ['name'],
+                    },
+                ],
+            });
             if (allSongs.length === 0) {
                 const mensaje = "No hay canciones aún";
 
