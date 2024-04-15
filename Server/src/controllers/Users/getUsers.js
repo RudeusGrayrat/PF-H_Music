@@ -1,6 +1,4 @@
-const axios = require('axios');
-const { YOUR_API_KEY } = process.env;
-const { Temperaments } = require('../db');
+const { Temperaments } = require('../../db');
 
 const getClients = async (req, res) => {
     try {

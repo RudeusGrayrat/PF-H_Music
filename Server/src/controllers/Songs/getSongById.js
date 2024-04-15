@@ -1,4 +1,4 @@
-const { Songs, Artists, Genres } = require("../db");
+const { Songs, Artists, Genres } = require("../../db");
 
 const getSongById = async (req, res) => {
 

@@ -1,16 +1,14 @@
 const { Router } = require('express');
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
-const getSongs = require("../controllers/getSongs");
-const getSongById = require("../controllers/getSongById");
+
+const getSongs = require("../controllers/Songs/getSongs");
+const getSongById = require("../controllers/Songs/getSongById");
 // const getClients = require("../controllers/getClients");
-const postSongs = require("../controllers/postSongs");
-const postGenres = require('../controllers/postGenres');
-const postArtists = require('../controllers/postArtists');
+const postSongs = require("../controllers/Songs/postSongs");
+const postGenres = require('../controllers/Genres/postGenres');
+const postArtists = require('../controllers/Artists/postArtists');
 
 const router = Router();
 
-// Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 router.get("/songs", getSongs);
 router.get("/songs/:idSong", getSongById);

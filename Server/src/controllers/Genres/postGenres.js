@@ -1,15 +1,15 @@
-const { Artists } = require('../db');
+const { Genres } = require('../../db');
 
-const postArtists = async (req, res) => {
+const postGenres = async (req, res) => {
     try {
         const { name } = req.body;
 
         // Crear la nueva canción
-        const newArtists = await Artists.create({
+        const newGenres = await Genres.create({
             name,
         });
 
-        return res.status(200).json(newArtists);
+        return res.status(200).json(newGenres);
     } catch (error) {
         // Manejar errores de validación de Sequelize
         console.error(error);
@@ -18,4 +18,4 @@ const postArtists = async (req, res) => {
     }
 };
 
-module.exports = postArtists;
+module.exports = postGenres;

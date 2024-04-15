@@ -1,4 +1,4 @@
-const { Songs } = require('../db');
+const { Songs } = require('../../db');
 
 const postSongs = async (req, res) => {
     try {

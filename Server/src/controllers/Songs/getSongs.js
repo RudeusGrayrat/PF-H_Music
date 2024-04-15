@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { Op } = require('sequelize');
-const { Songs, Artists, Genres } = require("../db");
+const { Songs, Artists, Genres } = require("../../db");
 
 
 const getSongs = async (req, res) => {
