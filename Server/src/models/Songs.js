@@ -18,12 +18,16 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        pathMusic: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         ArtistID: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'Artists', 
-                key: 'id' 
+                model: 'Artists',
+                key: 'id'
             },
         },
         GenreID: {
@@ -31,16 +35,12 @@ module.exports = (sequelize) => {
             allowNull: false,
             references: {
                 model: 'Genres',
-                key: 'id' 
+                key: 'id'
             },
-        },
-         pathMusic: {
-         type: DataTypes.STRING,
-         allowNull: false,
         },
     },
         {
             timestamps: false
         }
- );
+    );
 };
