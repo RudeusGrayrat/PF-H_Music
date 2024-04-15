@@ -2,11 +2,12 @@ const { Artists } = require('../../db');
 
 const postArtists = async (req, res) => {
     try {
-        const { name } = req.body;
+        const { name, image } = req.body;
 
         // Crear la nueva canción
         const newArtists = await Artists.create({
             name,
+            image
         });
 
         return res.status(200).json(newArtists);
