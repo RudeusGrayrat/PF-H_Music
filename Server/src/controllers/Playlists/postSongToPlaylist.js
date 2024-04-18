@@ -1,5 +1,6 @@
 const { PlaylistDetails } = require('../../db');
 
+//este controlador es para agregar canciones a una playlist
 const postSongToPlaylist = async(req,res) => {
     
     try {
