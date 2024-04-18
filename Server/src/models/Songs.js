@@ -38,7 +38,16 @@ module.exports = (sequelize) => {
                 key: 'id'
             },
         },
+        AlbumsID: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'Albums',
+                key: 'id'
+            }
+        }
     },
+
         {
             timestamps: false
         }

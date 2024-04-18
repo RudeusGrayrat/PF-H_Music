@@ -26,7 +26,7 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 
-const { Artists, Songs, Genres, Playlists, Users, PlaylistDetails, Likes } = sequelize.models;
+const { Artists, Songs, Genres, Playlists, Users, PlaylistDetails, Likes, Albums } = sequelize.models;
 
 //relación "uno a muchos" entre Artistas y Canciones
 Artists.hasMany(Songs, { foreignKey: 'ArtistID' });
@@ -47,6 +47,10 @@ Playlists.belongsToMany(Songs, { through: PlaylistDetails, foreignKey: 'Playlist
 //relación "muchos a muchos" entre Usuarios y Listas de Reproducción a través de Likes
 Users.belongsToMany(Playlists, { through: Likes, foreignKey: 'UsersID' });
 Playlists.belongsToMany(Users, { through: Likes, foreignKey: 'PlaylistID' });
+
+//relacion "uno a muchos" entre Albunes y Canciones
+Albums.hasMany(Songs, { foreignKey: "AlbumsID"});
+Songs.belongsTo(Albums, {foreignKey: "AlbumsID"});
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
