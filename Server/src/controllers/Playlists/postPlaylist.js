@@ -1,5 +1,7 @@
 const { Playlists, Users } = require('../../db');
 
+//este controlador es para crear una playlist nueva
+
 const postPlaylist = async (req, res) => {
   try {
     const { name, userId } = req.body;

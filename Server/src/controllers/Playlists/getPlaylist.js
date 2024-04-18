@@ -1,5 +1,7 @@
 const { Playlists, Users } = require('../../db');
 
+//este controlador es para traer la playlist de todos los usuarios en la
+//base de datos
 const getPlaylist = async(req,res) => {
     
     try {

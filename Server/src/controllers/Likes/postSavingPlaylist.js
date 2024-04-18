@@ -1,5 +1,6 @@
 const { Likes } = require('../../models');
 
+//Este controlador es para guardar la playlist que el usuario le ha dado like(me gusta)
 
 const postSavingPlaylist = async (req, res) => {
 

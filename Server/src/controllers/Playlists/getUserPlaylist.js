@@ -1,9 +1,10 @@
 const { Playlists, Users, Likes } = require('../../db.js');
 
+//este controlador es para traer las playlist del usuario que consulta
 const getUserPlaylist = async (req, res) => {
     const { id } = req.body
     try {
-        const userId = id // Suponiendo que tienes acceso al id del usuario logeado en req.userId
+        const userId = id 
 
         const playlists = await Playlists.findAll({
             where: {
