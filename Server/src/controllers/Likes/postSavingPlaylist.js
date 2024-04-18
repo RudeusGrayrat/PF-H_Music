@@ -1,4 +1,4 @@
-const { Likes } = require('../../models');
+const { Likes } = require('../../db');
 
 //Este controlador es para guardar la playlist que el usuario le ha dado like(me gusta)
 
