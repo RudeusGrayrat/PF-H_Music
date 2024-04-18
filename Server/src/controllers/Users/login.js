@@ -2,7 +2,7 @@ const { Users } = require("../../db")
 
 const login = async (req, res) => {
     try {
-        const { email, password } = req.query
+        const { email, password } = req.body
 
         if (!email || !password) {
             res.status(400).json({ message: "Faltan datos" })
