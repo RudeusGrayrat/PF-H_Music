@@ -28,7 +28,7 @@ router.get("/getUserPlaylist", getUserPlaylist);
 router.get("getPlaylist", getPlaylist);
 router.get("getPlaylistDetail", getPlaylistDetail);
 
-router.put("/users", putUser);
+router.put("/users/:userId/editPasword", putUser);
 
 router.post("/users", postUsers);
 router.post("/songs", postSongs);
