@@ -9,7 +9,7 @@ const getUsers = async (req, res) => {
         });
 
         if (allUsers.length === 0) {
-            const mensaje = "No hay artistas";
+            const mensaje = "No hay usuarios";
 
             return res.status(200).json(mensaje);
         }
