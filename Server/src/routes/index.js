@@ -32,7 +32,7 @@ router.get("getPlaylistDetail", getPlaylistDetail);
 router.get("/getUserPlaylist", getUserPlaylist);
 router.get("/albums", getAlbums);
 
-router.put("/users", putUser);
+router.put("/users/:userId/editPasword", putUser);
 
 router.post("/users", postUsers);
 router.post("/songs", postSongs);

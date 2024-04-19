@@ -15,9 +15,10 @@ const login = async (req, res) => {
         if (!user) {
             res.status(404).json({ message: "Usuario no encontrado" });
         }
-
+        
         if (user.password === password) {
-            res.status(200).json({ access: true })
+            
+            res.status(200).json(user)
         } else {
             res.status(403).json({ message: "Contraseña incorrecta" })
         }
