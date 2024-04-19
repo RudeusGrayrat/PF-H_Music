@@ -1,31 +1,38 @@
-const { Users } = require('./Server/src/db');
+const { Users } = require('../../db');
 
-const editUserHandler = async (req, res) => {
-    // Solo aceptamos solicitudes de tipo PUT
-    if (req.method !== 'PUT') {
-        return res.status(405).json({ error: 'Método no permitido' });
-    }
-
-    const { name, email, password } = req.body;
-
-    if (!email || !password) {
-        return res.status(400).json({ error: 'Correo electrónico y contraseña son requeridos' });
-    }
-
+const putUser = async (req, res) => {
     try {
-        const updatedUser = await Users.update({
-            data: {
-                name,
-                email,
-            },
-        });
+        const { email, password, newPassword } = req.body;
 
-        // Enviar una respuesta exitosa con los datos actualizados del usuario
-        res.json(updatedUser);
+        if (req.method !== 'PUT') {
+            return res.status(405).json({ error: 'Método no permitido' });
+        }
+
+
+        if (!email || !password || !newPassword) {
+            return res.status(400).json({ error: 'Correo electrónico, contraseña actual y nueva contraseña son requeridos' });
+        }
+        const user = await Users.findOne({ where: { email } });
+        if (!user) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+
+        const [updatedUser] = await Users.update(
+            { password: newPassword },
+            { where: { email } }
+        );
+        if (password !== user.password) {
+            return res.status(401).json({ error: 'Contraseña actual incorrecta' });
+        }
+
+        if (updatedUser > 0) {
+            return res.json({ success: 'Contraseña actualizada exitosamente' });
+        } else {
+            return res.status(404).json({ error: 'No se pudo actualizar la contraseña' });
+        }
     } catch (error) {
-        // Manejar errores (por ejemplo, error al actualizar en la base de datos)
         res.status(500).json({ error: 'Error al actualizar la cuenta' });
     }
 };
 
-export default editUserHandler;
+module.exports = putUser;

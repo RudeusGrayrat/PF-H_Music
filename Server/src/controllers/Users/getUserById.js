@@ -1,4 +1,4 @@
-const { Users } = require('./Server/src/db');
+const { Users } = require('../../db');
 
 const getUserById = async (req, res) => {
     try {

@@ -14,16 +14,22 @@ const getPlaylist = require('../controllers/Playlists/getPlaylist');
 const getPlaylistDetail = require('../controllers/Playlists/getPlaylistDetail');
 const postSavingPlaylist = require('../controllers/Likes/postSavingPlaylist');
 const getUserPlaylist = require('../controllers/Playlists/getUserPlaylist');
+const getUserById = require('../controllers/Users/getUserById');
+const putUser = require('../controllers/Users/putUser');
 
 const router = Router();
 
 router.get("/songs", getSongs);
 router.get("/songs/:idSong", getSongById);
-router.get("/users", getUsers);
 router.get("/login", login);
+router.get("/users", getUsers);
+router.get("/users/:userId", getUserById);
+router.get("/getUserPlaylist", getUserPlaylist);
 router.get("getPlaylist", getPlaylist);
 router.get("getPlaylistDetail", getPlaylistDetail);
-router.get("/getUserPlaylist", getUserPlaylist);
+
+router.put("/users", putUser);
+
 router.post("/users", postUsers);
 router.post("/songs", postSongs);
 router.post("/genres", postGenres);
