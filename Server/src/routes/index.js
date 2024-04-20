@@ -16,6 +16,7 @@ const postSavingPlaylist = require('../controllers/Likes/postSavingPlaylist');
 const getUserPlaylist = require('../controllers/Playlists/getUserPlaylist');
 const getUserById = require('../controllers/Users/getUserById');
 const putUser = require('../controllers/Users/putUser');
+const { verification } = require('../controllers/Verification/verification');
 
 const router = Router();
 
@@ -27,6 +28,7 @@ router.get("/users/:userId", getUserById);
 router.get("/getUserPlaylist", getUserPlaylist);
 router.get("getPlaylist", getPlaylist);
 router.get("getPlaylistDetail", getPlaylistDetail);
+router.get("/verification", verification);
 
 router.put("/users", putUser);
 
