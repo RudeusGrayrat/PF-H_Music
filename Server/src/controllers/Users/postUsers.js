@@ -2,9 +2,10 @@ const { Users } = require('../../db');
 
 const postUsers = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
+        const { name, image, email, password } = req.body;
         const newUser = await Users.create({
             name, 
+            image,
             email, 
             password
         });
