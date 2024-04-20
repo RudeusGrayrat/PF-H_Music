@@ -18,6 +18,7 @@ const getAlbums = require('../controllers/Albums/getAlbums');
 const postAlbums = require('../controllers/Albums/postAlbums');
 const getUserById = require('../controllers/Users/getUserById');
 const putUser = require('../controllers/Users/putUser');
+const { verification } = require('../controllers/Verification/verification');
 
 const router = Router();
 
@@ -29,6 +30,7 @@ router.get("/users/:userId", getUserById);
 router.get("/getUserPlaylist", getUserPlaylist);
 router.get("getPlaylist", getPlaylist);
 router.get("getPlaylistDetail", getPlaylistDetail);
+router.get("/verification", verification);
 router.get("/getUserPlaylist", getUserPlaylist);
 router.get("/albums", getAlbums);
 
