@@ -40,6 +40,4 @@ const verification = async (req, res) => {
   }
 };
 
-module.exports = {
-  verification
-};
+module.exports = verification;
