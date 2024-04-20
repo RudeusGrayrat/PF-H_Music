@@ -34,7 +34,7 @@ module.exports = (sequelize) => {
             defaultValue: 'gratis'
         },
 
-        verificado: {
+        esta_verificado: {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
             allowNull: false,
