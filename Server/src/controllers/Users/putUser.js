@@ -17,19 +17,22 @@ const putUser = async (req, res) => {
             return res.status(404).json({ error: 'Usuario no encontrado' });
         }
 
-        const [updatedUser] = await Users.update(
-            { password: newPassword },
-            { where: { email } }
-        );
+
         if (password !== user.password) {
             return res.status(401).json({ error: 'Contraseña actual incorrecta' });
+        } else {
+            const [updatedUser] = await Users.update(
+                { password: newPassword },
+                { where: { email } }
+            );
+            if (updatedUser > 0) {
+                return res.json({ success: 'Contraseña actualizada exitosamente' });
+            } else {
+                return res.status(404).json({ error: 'No se pudo actualizar la contraseña' });
+            }
         }
 
-        if (updatedUser > 0) {
-            return res.json({ success: 'Contraseña actualizada exitosamente' });
-        } else {
-            return res.status(404).json({ error: 'No se pudo actualizar la contraseña' });
-        }
+
     } catch (error) {
         res.status(500).json({ error: 'Error al actualizar la cuenta' });
     }
