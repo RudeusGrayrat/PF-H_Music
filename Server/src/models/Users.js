@@ -13,6 +13,7 @@ module.exports = (sequelize) => {
         image: {
             type: DataTypes.STRING,
             allowNull: false,
+            defaultValue: "https://www.clipartkey.com/mpngs/m/152-1520367_user-profile-default-image-png-clipart-png-download.png"
         },
         name: {
             type: DataTypes.STRING,
@@ -25,7 +26,28 @@ module.exports = (sequelize) => {
         password: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        rol: {
+            type: DataTypes.ENUM,
+            values: ['gratis', 'registrado', 'premium', 'baneado', 'admin'],
+            allowNull: false,
+            defaultValue: 'gratis'
+        },
+
+        verificado: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+            allowNull: false,
+        },
+
+        verification_token: {
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
+            allowNull: true,
         }
+
+            
+        
     },
         {
             timestamps: false
