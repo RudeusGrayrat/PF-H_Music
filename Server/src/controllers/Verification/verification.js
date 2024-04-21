@@ -22,6 +22,7 @@ const verification = async (req, res) => {
   }
 
   const verificationToken = user.verification_token;
+  const userName = user.name.replace(/\s+/g, '');
 
   try {
     const sendingEmail = await transporter.sendMail({
@@ -29,7 +30,7 @@ const verification = async (req, res) => {
       to: user.email,
       subject: 'Henry Music - Verificación de correo electrónico',
       text: `Por favor, verifica tu correo electrónico siguiendo el siguiente enlace: 
-      http://localhost:3000/verification?id=${id}&token=${verificationToken}`,
+      http://localhost:3000/verification/${userName}?id=${id}&token=${verificationToken}`,
     });
 
     res.status(200).json(sendingEmail);
