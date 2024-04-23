@@ -20,8 +20,8 @@ const getUserById = require('../controllers/Users/getUserById');
 const putUserPassword = require('../controllers/Users/putUserPassword');
 const verification  = require('../controllers/Verification/verification');
 const changeVerificationStatus = require('../controllers/Verification/changeVerificationStatus');
-const Pay = require('../controllers/PasarelaStripe/pay');
-const Paied = require('../controllers/PasarelaStripe/paied');
+const Pay = require('../controllers/PasarelaStripe/Pay');
+const Paied = require('../controllers/PasarelaStripe/Paied');
 
 const router = Router();
 
