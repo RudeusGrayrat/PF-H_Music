@@ -17,9 +17,11 @@ const getUserPlaylist = require('../controllers/Playlists/getUserPlaylist');
 const getAlbums = require('../controllers/Albums/getAlbums');
 const postAlbums = require('../controllers/Albums/postAlbums');
 const getUserById = require('../controllers/Users/getUserById');
-const putUser = require('../controllers/Users/putUser');
+const putUserPassword = require('../controllers/Users/putUserPassword');
 const verification  = require('../controllers/Verification/verification');
 const changeVerificationStatus = require('../controllers/Verification/changeVerificationStatus');
+const Pay = require('../controllers/PasarelaStripe/pay');
+const Paied = require('../controllers/PasarelaStripe/Paied');
 
 const router = Router();
 
@@ -35,9 +37,11 @@ router.get("/verification", verification);
 router.get("/getUserPlaylist", getUserPlaylist);
 router.get("/albums", getAlbums);
 
-router.put("/users/:userId/editPasword", putUser);
+router.put("/users/:userId/editPasword", putUserPassword);
 router.put("/verification/changeStatus", changeVerificationStatus);
 
+router.post("/users/:userId/pay", Pay);
+router.post("/paied", Paied);
 router.post("/users", postUsers);
 router.post("/songs", postSongs);
 router.post("/genres", postGenres);

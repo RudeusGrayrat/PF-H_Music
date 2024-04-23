@@ -2,8 +2,6 @@ const { Users } = require("../../db");
 
 const changeVerificationStatus = async (req, res) => {
     const {id, token} = req.body;
-
-
     try {
         const user = await Users.findOne({
             where: {

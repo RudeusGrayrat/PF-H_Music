@@ -8,11 +8,9 @@ const getUserById = async (req, res) => {
             attributes: {
                 exclude: ['password']
             },
-            
-        })
 
-        res.status(200).json(user);
-        return user;
+        })
+        return res.status(200).json(user);
     } catch (error) {
         // Handle any errors that occur during the fetch
         console.error('Error fetching user:', error);
